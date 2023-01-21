@@ -14,32 +14,51 @@ code {
     monospace;
 }
 
-.backgroundImage, .backgroundDiv {
+.backgroundDiv {
   display: flex;
   width: 100%;
   height: 100%;
 }
 
-.odlaw {
-  width: auto;
-  height: 100px;
+.backgroundImage {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .backgroundDiv {
   position: absolute;
 }
 
-.backgroundImage {
-  position: relative;
+.backgroundDiv img {
+  position: absolute;
   top: 0px;
   left: 0px;
-  z-index: 1
 }
 
-.odlaw {
-  position: relative;
-  top: 0px;
+.backgroundDiv .charmander {
+  position: absolute;
+  top: 500px;
   left: 0px;
   right: 0px;
-  z-index: 2;
+  width: auto;
+  height: 50px;
+}
+
+.backgroundDiv .pikachu {
+  position: absolute;
+  top: 400px;
+  left: 1250px;
+  right: 0px;
+  width: auto;
+  height: 50px;
+}
+
+.backgroundDiv .psyduck {
+  position: absolute;
+  top: 800px;
+  left: 1250px;
+  right: 0px;
+  width: auto;
+  height: 50px;
 }
