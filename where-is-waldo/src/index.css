@@ -14,66 +14,28 @@ code {
     monospace;
 }
 
-.backgroundDiv {
+.outerLayer {
   display: flex;
-  width: 2000px;
-  max-width: 200vw;
-  height: fit-content;
-  max-height: 200vh;
-}
-
-.backgroundImage {
-  display: flex;
-  width: 2000px;
-  max-width: 200vw;
-  max-height: 200vh;
-
+  align-items: center;
+  justify-content: center;
+  background-color: black;   
 }
 
 .backgroundDiv {
-  position: absolute;
+  background-image: url('./img/pokemon3.jpg');
+  height: 2000px;
+  width: 1600px;
+  border: 5px solid red;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
-.backgroundDiv img {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-}
-
-.backgroundDiv .charmander {
-  position: absolute;
-  top: 500px;
-  left: 0px;
-  right: 0px;
-  width: auto;
-  height: 50px;
-}
-
-.backgroundDiv .pikachu {
-  position: absolute;
-  top: 400px;
-  left: 1250px;
-  right: 0px;
-  width: auto;
-  height: 50px;
-}
-
-.backgroundDiv .psyduck {
-  position: absolute;
-  top: 800px;
-  left: 1250px;
-  right: 0px;
-  width: auto;
-  height: 50px;
-}
 
 .selectionArea {
   display: flex;
-  position: absolute;
-  height: 80px;
-  width: 80px;
-  border: 5px solid red;
-  margin: 0;
+  position: relative;
+  height: fit-content;
+  width: fit-content;
   z-index: 3;
 }
 
@@ -83,10 +45,61 @@ code {
 
 .clickLayer {
   display: flex;
-  width: 2000px;
-  max-width: 200vw;
-  height: 2000px;
-  max-height: 200vh;
-  border: 1px solid blue;
+  border: 3px solid blue;
+  width: inherit;
+  height: inherit;
   z-index: 2;
+}
+
+.location1 {
+  position: relative;
+  top: 1430px;
+  left: 1300px;
+  height: 200px;
+  width: 250px;
+  border: 5px solid rgb(12, 247, 12);
+  color: white;
+  font-size: xx-large;
+}
+
+.location2 {
+  position: relative;
+  top: 1100px;
+  left: 0px;
+  height: 250px;
+  width: 250px;
+  border: 5px solid rgb(12, 247, 12);
+  color: white;
+  font-size: xx-large;
+}
+
+.location3 {
+  position: relative;
+  top: -10px;
+  left: 1300px;
+  height: 100px;
+  width: 100px;
+  border: 5px solid rgb(12, 247, 12);
+  color: white;
+  font-size: xx-large;
+}
+
+.navbar {
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  min-height: 100px;
+  background-color: red;
+  z-index: 4;
+}
+
+.navbarPokemon {
+  height: 100px;
+  width: auto;
+}
+
+.navbarPokemon:hover {
+  height: 120px;
+  width: auto;
 }
