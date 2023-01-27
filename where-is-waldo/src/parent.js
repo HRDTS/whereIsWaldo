@@ -35,11 +35,12 @@ function Parent() {
             let fixLocation = selectedCoordinates.characterSelected
             let copyOfScoreTracker = scoreTracker
             copyOfScoreTracker[fixLocation] = true
-            setScoreTracker(copyOfScoreTracker)
+            setScoreTracker({...scoreTracker, copyOfScoreTracker})
         }
         if(scoreTracker.location1 == true && scoreTracker.location2 == true && scoreTracker.location3) {
-            alert('we got a winner')
+            console.log('we got a winner')
         }
+        console.log(scoreTracker)
     }, [selectedCoordinates])
 
     function passSelectedCoordinates (event) {

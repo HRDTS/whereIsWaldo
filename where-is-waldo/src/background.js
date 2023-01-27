@@ -35,9 +35,6 @@ function Background(props) {
     })
 
 
-
-
-
     return (
         <div className="outerLayer">
         <div className="backgroundDiv" ref={divRef} src={PokeMap} onClick={cycleClicked}>
