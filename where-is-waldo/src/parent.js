@@ -14,15 +14,18 @@ function Parent() {
 
     function mouseCoordinates (event) {
         let element = event.target.parentElement.className
-        //let rect = event.target.getBoundingClientRect()
 
         let rect = document.getElementsByClassName('backgroundDiv')[0].getBoundingClientRect()
         
-        let xPos = Math.round(event.x - rect.left);
+        let xPos = Math.round(event.x - rect.left); // rect.left en rect.right extracts the height of other divs. This calculation gives the coordinates for the 'backgroundDiv' class only.
         let yPos = Math.round(event.y - rect.top);
-        if(element === 'outerLayer' || element === 'backgroundDiv') {
-            setSelectedCoordinates({...selectedCoordinates, x: xPos, y: yPos, characterClicked: event.target.className})
-            console.log(event.target.className)
+        let xPosPercentage = Math.round(((event.x - rect.left) / rect.width) * 100) // top === yPos , left === xPos (in css language)
+        let yPosPercentage = Math.round(((event.y - rect.top) / rect.height)*100) 
+
+        if(element === 'backgroundDiv') {
+            setSelectedCoordinates({...selectedCoordinates, x: yPosPercentage, y: xPosPercentage, characterClicked: event.target.className}) // characterClicked should req. info from database.
+            console.log(yPosPercentage)
+            console.log(xPosPercentage)
         }
     }
 
@@ -50,8 +53,6 @@ function Parent() {
     return (
         <div className="parentDiv">
             <Navbar pokemon1={Tangela} pokemon2={Scyther} pokemon3={Diglet} scoreTracker={scoreTracker}/>
-            <button onClick={() => console.log(scoreTracker)}>console button</button>
-            <h1 id="output" ref={divRef}></h1>
             <Background selectedCoordinates={selectedCoordinates} setSelectedCoordinates={passSelectedCoordinates}/>
         </div>
     )

@@ -14,20 +14,16 @@ code {
     monospace;
 }
 
-.outerLayer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: black;   
-}
 
 .backgroundDiv {
-  background-image: url('./img/pokemon3.jpg');
-  height: 2000px;
-  width: 1600px;
-  border: 5px solid red;
-  background-size: cover;
-  background-repeat: no-repeat;
+  display: grid;
+  grid-template-areas:main;
+  position: relative;
+}
+
+.backgroundDiv>img {
+  grid-area: auto;
+  width: 100%;
 }
 
 
@@ -51,13 +47,14 @@ code {
   z-index: 2;
 }
 
-.location1 {
-  position: relative;
-  top: 1430px;
-  left: 1300px;
-  height: 200px;
-  width: 250px;
-  border: 5px solid rgb(12, 247, 12);
+.backgroundDiv>.location1 {
+  position: absolute;
+  width: 1px;
+  top:24%;
+  left:86%;
+  grid-area: auto;
+  aspect-ratio: 1/1;
+  border:5px solid limegreen;
   color: white;
   font-size: xx-large;
 }
@@ -89,7 +86,8 @@ code {
   top: 0;
   display: flex;
   justify-content: space-between;
-  min-height: 100px;
+  min-height: 20px;
+  max-height: fit-content;
   background-color: red;
   z-index: 4;
 }
@@ -102,8 +100,4 @@ code {
 .navbarPokemon:hover {
   height: 120px;
   width: auto;
-}
-
-.confirmButton {
-  
 }
