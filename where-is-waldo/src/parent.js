@@ -4,9 +4,44 @@ import Navbar from "./navbar";
 import Tangela from './img/Character.Tangela.png'
 import Diglet from './img/Character.Diglet.png'
 import Scyther from './img/Character.Scyther.png'
+import { db } from './firebase.js'
+import { getDatabase, ref, set, onValue, get } from "firebase/database";
+
+
+/*
+        function writeUserData(userId, y1, y2, x1, x2) {
+        const db = getDatabase();
+        set(ref(db, 'users/' + userId), {
+            y1: y1,
+            y2: y2,
+            x1 : x1,
+            x2: x2
+        });
+    }
+
+      writeUserData('scyther', 65, 78, 0, 25 )
+      writeUserData('diglet', 24, 27, 82, 86 )
+      writeUserData('tangela', 72, 80, 85, 97 ) 
+*/
+
+      /*get(usersRef)
+      .then((snapshot) => {
+        const data = snapshot.val()
+        console.log(data);
+      })
+      .catch((err) => {
+        console.log(err)
+      })*/
 
 function Parent() {
+      const usersRef = ref(db, 'users');
 
+      const getDatabaseInfo = onValue(usersRef, (snapshot) => { // you need to set the logic based on this data. You probably need to do a promise. Or call it once and then check.
+        const data = snapshot.val();
+        return data
+      })
+
+    console.log(getDatabaseInfo)
     const divRef = useRef();
 
     const [scoreTracker, setScoreTracker] = useState({location1: false, location2: false, location3: false})
