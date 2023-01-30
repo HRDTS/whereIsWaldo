@@ -39,12 +39,24 @@ function Background(props) {
         clicked ? setClicked(false) : setClicked(true)
     }
 
+    useEffect(() => {
+        selectRef.current.style.left = selectedCoordinates.x
+    }, [selectedCoordinates])
 
 
     return (
         <div className="backgroundDiv" ref={divRef} onClick={cycleClicked}>
             <img src={PokeMap}/>
-            <div className="location1"></div>
+            <div className="selectionArea" ref={selectRef}>
+                <form id="charSelectionForm">
+                        <select id="charSelectionMenu" onClick={setSelectedCoordinates}>
+                            <option>Which Pokemon is this?</option>
+                            <option value='location1'>Tangela</option>
+                            <option value='location2'>Scyther</option>
+                            <option value='location3'>Diglet</option>
+                        </select>
+                </form>
+            </div>
         </div>
     )
 }

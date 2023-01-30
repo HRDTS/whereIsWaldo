@@ -11,7 +11,7 @@ import { getDatabase, ref, set, onValue, get } from "firebase/database";
 /*
         function writeUserData(userId, y1, y2, x1, x2) {
         const db = getDatabase();
-        set(ref(db, 'users/' + userId), {
+        set(ref(db, 'usersv2/' + userId), {
             y1: y1,
             y2: y2,
             x1 : x1,
@@ -19,9 +19,9 @@ import { getDatabase, ref, set, onValue, get } from "firebase/database";
         });
     }
 
-      writeUserData('scyther', 65, 78, 0, 25 )
-      writeUserData('diglet', 24, 27, 82, 86 )
-      writeUserData('tangela', 72, 80, 85, 97 ) 
+      writeUserData('location2', 65, 78, 0, 25 )
+      writeUserData('location3', 24, 27, 82, 86 )
+      writeUserData('location1', 72, 80, 85, 97 ) 
 */
 
       /*get(usersRef)
@@ -34,14 +34,17 @@ import { getDatabase, ref, set, onValue, get } from "firebase/database";
       })*/
 
 function Parent() {
-      const usersRef = ref(db, 'users');
+      const usersRef = ref(db, 'usersv2');
 
-      const getDatabaseInfo = onValue(usersRef, (snapshot) => { // you need to set the logic based on this data. You probably need to do a promise. Or call it once and then check.
-        const data = snapshot.val();
-        return data
-      })
-
-    console.log(getDatabaseInfo)
+      function getDatabaseInfo () {
+        return new Promise((resolve, reject) => {
+            onValue(usersRef, (snapshot) => { 
+                const data = snapshot.val();
+                resolve(data)
+              })
+        })
+      } 
+    
     const divRef = useRef();
 
     const [scoreTracker, setScoreTracker] = useState({location1: false, location2: false, location3: false})
@@ -58,7 +61,20 @@ function Parent() {
         let yPosPercentage = Math.round(((event.y - rect.top) / rect.height)*100) 
 
         if(element === 'backgroundDiv') {
-            setSelectedCoordinates({...selectedCoordinates, x: yPosPercentage, y: xPosPercentage, characterClicked: event.target.className}) // characterClicked should req. info from database.
+            setSelectedCoordinates({...selectedCoordinates, x: xPosPercentage, y: yPosPercentage, characterClicked: ''}) // characterClicked should req. info from database.
+
+            getDatabaseInfo().then(function(data) {
+              for(let i in data) {
+                if(xPosPercentage > data[i].x1 && xPosPercentage < data[i].x2
+                  && yPosPercentage > data[i].y1 && yPosPercentage < data[i].y2) {
+                    console.log('YEAASSHHHHH')
+                    setSelectedCoordinates({...selectedCoordinates, characterClicked: i})
+                    break
+                }
+              }
+            })
+
+
             console.log(yPosPercentage)
             console.log(xPosPercentage)
         }

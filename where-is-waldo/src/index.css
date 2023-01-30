@@ -14,25 +14,32 @@ code {
     monospace;
 }
 
-
 .backgroundDiv {
   display: grid;
-  grid-template-areas:main;
-  position: relative;
+  position: absolute;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
 }
 
 .backgroundDiv>img {
   grid-area: auto;
+  position: relative;
   width: 100%;
+  height: 100%;
+  grid-column: 1;
+  grid-row: 1;
 }
 
 
 .selectionArea {
-  display: flex;
+  display: grid;
+  grid-column: 1;
+  grid-row: 1;
   position: relative;
   height: fit-content;
   width: fit-content;
-  z-index: 3;
+  z-index: 1;
+  left: 100px;
 }
 
 #charSelectionMenu, #charSelectionForm {
@@ -42,43 +49,9 @@ code {
 .clickLayer {
   display: flex;
   border: 3px solid blue;
-  width: inherit;
-  height: inherit;
+  width: 100%;
+  min-height: inherit;
   z-index: 2;
-}
-
-.backgroundDiv>.location1 {
-  position: absolute;
-  width: 1px;
-  top:24%;
-  left:86%;
-  grid-area: auto;
-  aspect-ratio: 1/1;
-  border:5px solid limegreen;
-  color: white;
-  font-size: xx-large;
-}
-
-.location2 {
-  position: relative;
-  top: 1100px;
-  left: 0px;
-  height: 250px;
-  width: 250px;
-  border: 5px solid rgb(12, 247, 12);
-  color: white;
-  font-size: xx-large;
-}
-
-.location3 {
-  position: relative;
-  top: -10px;
-  left: 1300px;
-  height: 100px;
-  width: 100px;
-  border: 5px solid rgb(12, 247, 12);
-  color: white;
-  font-size: xx-large;
 }
 
 .navbar {
