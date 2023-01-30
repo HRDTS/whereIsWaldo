@@ -48,9 +48,12 @@ function Parent() {
     const divRef = useRef();
 
     const [scoreTracker, setScoreTracker] = useState({location1: false, location2: false, location3: false})
+    const [gameStillRunning, setGameStillRunning] = useState(true)
     const [selectedCoordinates, setSelectedCoordinates] = useState({x: 0, y: 0, characterClicked: '', characterSelected: ''})
+    const [timer, setTimer] = useState({timerStarted: true, seconds: 0})
 
     function mouseCoordinates (event) {
+        //setTimer({...timer, timerStarted: true})
         let element = event.target.parentElement.className
 
         let rect = document.getElementsByClassName('backgroundDiv')[0].getBoundingClientRect()
@@ -68,7 +71,7 @@ function Parent() {
                 if(xPosPercentage > data[i].x1 && xPosPercentage < data[i].x2
                   && yPosPercentage > data[i].y1 && yPosPercentage < data[i].y2) {
                     console.log('YEAASSHHHHH')
-                    setSelectedCoordinates({...selectedCoordinates, characterClicked: i})
+                    setSelectedCoordinates({...selectedCoordinates, x: xPosPercentage, y: yPosPercentage, characterClicked: i})
                     break
                 }
               }
@@ -93,6 +96,7 @@ function Parent() {
         }
         if(scoreTracker.location1 == true && scoreTracker.location2 == true && scoreTracker.location3) {
             console.log('we got a winner')
+            setTimer({...timer, timerStarted: false})
         }
         console.log(scoreTracker)
     }, [selectedCoordinates])
@@ -101,8 +105,40 @@ function Parent() {
         setSelectedCoordinates({...selectedCoordinates, characterSelected: event.target.value})
     }
 
+
+    // TIMER - place your timer code here
+    const startTimer = () => {
+      if(timer.timerStarted)
+      setTimer({...timer, seconds: timer.seconds + 1})
+    }
+
+    useEffect(() => {
+      const interval = setInterval(() => startTimer(), 1000);
+
+      return () => clearInterval(interval)
+    })
+    //
+
+    // FORM - place your form code here
+    const submitScore = () => {
+      const endTime = timer.seconds
+      return (
+        <div>
+          <h1>your time is: {endTime}</h1>
+          <form>
+            <label>your name:</label>
+            <input></input>
+            <button>Submit score</button>
+          </form>
+        </div>
+      )
+    }
+
+    //
+    console.log(timer.seconds)
     return (
-        <div className="parentDiv">
+        <div className="parentDiv" >
+            {!timer.timerStarted ? submitScore() : null}
             <Navbar pokemon1={Tangela} pokemon2={Scyther} pokemon3={Diglet} scoreTracker={scoreTracker}/>
             <Background selectedCoordinates={selectedCoordinates} setSelectedCoordinates={passSelectedCoordinates}/>
         </div>

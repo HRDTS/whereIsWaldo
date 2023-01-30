@@ -16,7 +16,7 @@ code {
 
 .backgroundDiv {
   display: grid;
-  position: absolute;
+  position: relative;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
 }
@@ -39,7 +39,7 @@ code {
   height: fit-content;
   width: fit-content;
   z-index: 1;
-  left: 100px;
+  border: 0px;
 }
 
 #charSelectionMenu, #charSelectionForm {
