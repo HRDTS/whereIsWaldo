@@ -5,9 +5,6 @@ import Charmander from './img/Character.Charmander.png'
 import Pikachu from './img/Character.Pikachu2.png'
 import Psyduck from './img/Character.Psyduck2.png'
 
-/*
-scyther, tangela and diglet
-*/
 
 function Background(props) {
 
@@ -23,7 +20,9 @@ function Background(props) {
     }
 
     useEffect(() => {
-        selectRef.current.style.left = selectedCoordinates.x
+        selectRef.current.style.left = `${selectedCoordinates.x}%`
+        selectRef.current.style.top = `${selectedCoordinates.y}%`
+        console.log(selectedCoordinates.x)
     }, [selectedCoordinates])
 
 
