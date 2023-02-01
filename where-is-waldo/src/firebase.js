@@ -1,5 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getDatabase, ref, set, onValue } from "firebase/database";
+import { getFirestore } from "firebase/firestore";
 
 const firebaseApp = {
     apiKey: "redacted",
@@ -15,5 +16,6 @@ const firebaseApp = {
   const firebase = initializeApp(firebaseApp);
 
   export const db = getDatabase(firebase);
+  export const firestore = getFirestore(firebase)
 
 

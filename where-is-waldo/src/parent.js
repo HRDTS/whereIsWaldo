@@ -4,8 +4,9 @@ import Navbar from "./navbar";
 import Tangela from './img/Character.Tangela.png'
 import Diglet from './img/Character.Diglet.png'
 import Scyther from './img/Character.Scyther.png'
-import { db } from './firebase.js'
+import { db, firestore } from './firebase.js'
 import { getDatabase, ref, set, onValue, get } from "firebase/database";
+import { collection, addDoc } from "firebase/firestore";
 
 
 /*
@@ -24,14 +25,21 @@ import { getDatabase, ref, set, onValue, get } from "firebase/database";
       writeUserData('location1', 72, 80, 85, 97 ) 
 */
 
-      /*get(usersRef)
-      .then((snapshot) => {
-        const data = snapshot.val()
-        console.log(data);
-      })
-      .catch((err) => {
-        console.log(err)
-      })*/
+
+async function run(username, time) {
+  try{
+    const docRef = await addDoc(collection(firestore, "users"), {
+      username: username,
+      time: time,
+      date: new Date()
+    });
+    console.log("Document written with ID: ", docRef.id);
+  } catch (e) {
+    console.error("Error adding document: ", e);
+  }
+  }
+
+
 
 function Parent() {
       const usersRef = ref(db, 'usersv2');
@@ -44,7 +52,10 @@ function Parent() {
               })
         })
       } 
+      
     
+
+
     const divRef = useRef();
 
     const [scoreTracker, setScoreTracker] = useState({location1: false, location2: false, location3: false})
@@ -120,12 +131,18 @@ function Parent() {
     //
 
     // FORM - place your form code here
-    const submitScore = () => {
+
+    const submitScoreToFirestore = (e) => {
+      e.preventDefault();
+      run(e.target[0].value, timer.seconds)
+    }
+
+    const submitScoreForm = () => {
       const endTime = timer.seconds
       return (
         <div>
           <h1>your time is: {endTime}</h1>
-          <form>
+          <form onSubmit={submitScoreToFirestore}>
             <label>your name:</label>
             <input></input>
             <button>Submit score</button>
@@ -136,9 +153,15 @@ function Parent() {
 
     //
     console.log(timer.seconds)
+
+    // FIRESTORE - place your firestore code here
+    
+
+    
+    //
     return (
         <div className="parentDiv" >
-            {!timer.timerStarted ? submitScore() : null}
+            {timer.timerStarted ? submitScoreForm() : null}
             <Navbar pokemon1={Tangela} pokemon2={Scyther} pokemon3={Diglet} scoreTracker={scoreTracker}/>
             <Background selectedCoordinates={selectedCoordinates} setSelectedCoordinates={passSelectedCoordinates}/>
         </div>
