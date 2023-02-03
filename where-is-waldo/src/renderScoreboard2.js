@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import PokeMap from './img/pokemon3.jpg';
 import { collection, doc, getDoc, getDocs } from "firebase/firestore";
 import { firestore } from "./firebase";
+import { tab } from "@testing-library/user-event/dist/tab";
 
 async function fetchScoreboard() {
     try {
@@ -21,50 +22,43 @@ async function fetchScoreboard() {
 
 function RenderScoreboard2 () {
     const [data, setData] = useState([])
+    const [table, setTable] = useState()
 
     useEffect(() => {
         fetchScoreboard()
         .then(data => data.sort((a,b) => parseFloat(a.time) - parseFloat(b.time)))
         .then(data => setData(data))
+        
     }, [])
 
-    const listDataUsername = data.map((element) => 
-    <tr>
-        {element.username}
-    </tr>)
+    useEffect(() => {
 
-    const listDataTime = data.map((element) => 
-    <tr>
-    {element.time}
-    </tr>)
+        const tableePattern = data.map((element, index) => 
+            <tr key={index}>
+                <td>{index + 1}</td>
+                <td>{element.username}</td>
+                <td>{element.time}</td>
+                <td>{element.date.toDate().toISOString().slice(0, 10).split('-').reverse().join('/')}</td>
+            </tr>
+        )
+        setTable(tableePattern)
+    }, [data])
 
-    const listDataDate = data.map((element) => 
-    <tr>
-    {element.date.toDate().toISOString().slice(0, 10).split('-').reverse().join('/')}
-    </tr>)
-
-const listDataPlace = data.map((element, index) => 
-<tr>
-{index + 1}
-</tr>)
 
     return (
-        <div>
-        <tr>
-            <th>place</th>
-            <th>name</th>
-            <th>time</th>
-            <th>date</th>
-        </tr>
-        <tr>
-            <td>{listDataPlace}</td>
-            <td>{listDataUsername}</td>
-            <td>{listDataTime}</td>
-            <td>{listDataDate}</td>
-        </tr>
-        </div>
-
-
+        <table className="table">  
+            <tbody>
+            <tr>
+                <th>place</th>
+                <th>name</th>
+                <th>time</th>
+                <th>date</th>
+            </tr>
+            </tbody>
+            <tbody>
+                {table}
+            </tbody>
+        </table>
     )
 }
 
