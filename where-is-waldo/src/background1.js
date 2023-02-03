@@ -1,12 +1,12 @@
 import React, { useEffect, useState, useRef } from "react";
 import WIW from './img/whereIsWaldoBackground.jpg'
-import PokeMap from './img/pokemon3.jpg'
+import pokemonEasy from './img/pokemonEasy.jpg'
 import Charmander from './img/Character.Charmander.png'
 import Pikachu from './img/Character.Pikachu2.png'
 import Psyduck from './img/Character.Psyduck2.png'
 
 
-function Background(props) {
+function Background1(props) {
 
     const selectRef = useRef()
     const dropdownRef = useRef()
@@ -28,14 +28,14 @@ function Background(props) {
 
     return (
         <div className="backgroundDiv" ref={divRef} onClick={cycleClicked}>
-            <img src={PokeMap}/>
+            <img src={pokemonEasy}/>
             <div className="selectionArea" ref={selectRef}>
                 <form id="charSelectionForm">
                         <select id="charSelectionMenu" onClick={setSelectedCoordinates}>
                             <option>Which Pokemon is this?</option>
-                            <option value='location1'>Tangela</option>
-                            <option value='location2'>Scyther</option>
-                            <option value='location3'>Diglet</option>
+                            <option value='location1'>Rattata</option>
+                            <option value='location2'>Krabby</option>
+                            <option value='location3'>Kakuna</option>
                         </select>
                 </form>
             </div>
@@ -43,4 +43,4 @@ function Background(props) {
     )
 }
 
-export default Background;
+export default Background1;

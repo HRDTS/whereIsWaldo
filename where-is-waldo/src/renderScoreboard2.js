@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import PokeMap from './img/pokemon3.jpg';
 import { collection, doc, getDoc, getDocs } from "firebase/firestore";
 import { firestore } from "./firebase";
 import { tab } from "@testing-library/user-event/dist/tab";

@@ -6,7 +6,7 @@ import Scoreboard from "./scoreboard";
 function App() {
   return (
     <div className="App">
-      <Scoreboard/>
+      <Parent/>
     </div>
   );
 }
