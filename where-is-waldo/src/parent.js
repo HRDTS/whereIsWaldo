@@ -1,9 +1,17 @@
 import React, { useEffect, useRef, useState } from "react";
-import Background from "./background";
+import Background1 from "./background1";
+import Background2 from "./background2";
+import Background3 from "./background3";
 import Navbar from "./navbar";
 import Tangela from './img/Character.Tangela.png'
 import Diglet from './img/Character.Diglet.png'
 import Scyther from './img/Character.Scyther.png'
+import Rattata from './img/Character.Rattata.png'
+import Krabby from './img/Character.Krabby.png'
+import Kakuna from './img/Character.Kakuna.png'
+import Stanler from './img/Character.Stanler.png'
+import Bellosom from './img/Character.Bellosom.png'
+import Machoke from './img/Character.Machoke.png'
 import { db, firestore } from './firebase.js'
 import { getDatabase, ref, set, onValue, get } from "firebase/database";
 import { collection, addDoc } from "firebase/firestore";
@@ -12,7 +20,7 @@ import { collection, addDoc } from "firebase/firestore";
 /*
         function writeUserData(userId, y1, y2, x1, x2) {
         const db = getDatabase();
-        set(ref(db, 'usersv2/' + userId), {
+        set(ref(db, 'usersv2Easy/' + userId), {
             y1: y1,
             y2: y2,
             x1 : x1,
@@ -42,11 +50,21 @@ async function run(username, time) {
 
 
 function Parent() {
+
+  const [map, selectedMap] = useState(0)
+
+  const usersRefEasy = ref(db, 'usersv2Easy');
       const usersRef = ref(db, 'usersv2');
+      const usersRefHard = ref(db, 'usersv2Hard');
+      const usersRefArray = [
+        usersRefEasy,
+        usersRef,
+        usersRefHard
+      ]
 
       function getDatabaseInfo () {
         return new Promise((resolve, reject) => {
-            onValue(usersRef, (snapshot) => { 
+            onValue(usersRefArray[map], (snapshot) => { 
                 const data = snapshot.val();
                 resolve(data)
               })
@@ -152,18 +170,13 @@ function Parent() {
     }
 
     //
-    console.log(timer.seconds)
 
-    // FIRESTORE - place your firestore code here
-    
 
-    
-    //
     return (
         <div className="parentDiv" >
             {timer.timerStarted ? submitScoreForm() : null}
             <Navbar pokemon1={Tangela} pokemon2={Scyther} pokemon3={Diglet} scoreTracker={scoreTracker}/>
-            <Background selectedCoordinates={selectedCoordinates} setSelectedCoordinates={passSelectedCoordinates}/>
+            <Background1 selectedCoordinates={selectedCoordinates} setSelectedCoordinates={passSelectedCoordinates}/>
         </div>
     )
 }

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import PokeMap from './img/pokemon3.jpg';
+import pokemonEasy from './img/pokemonEasy.jpg'
 import Tangela from './img/Character.Tangela.png'
 import Diglet from './img/Character.Diglet.png'
 import Scyther from './img/Character.Scyther.png'
@@ -40,9 +40,9 @@ function Home() {
                         <img className="homePageCharacter" src={Scyther}/>
                     </div>
 
-                    <div className="brighten"> <img src={PokeMap} className='homePageImage'/> </div>
-                    <div className="brighten"> <img src={PokeMap} className='homePageImage'/> </div>
-                    <div className="brighten"> <img src={PokeMap} className='homePageImage'/> </div>
+                    <div className="brighten"> <img src={pokemonEasy} className='homePageImage'/> </div>
+                    <div className="brighten"> <img src={pokemonEasy} className='homePageImage'/> </div>
+                    <div className="brighten"> <img src={pokemonEasy} className='homePageImage'/> </div>
                 </div>
                 <div  className="homePageScoreboardDiv"> 
                     <div>
