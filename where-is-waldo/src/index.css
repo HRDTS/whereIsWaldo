@@ -188,4 +188,50 @@ code {
     color: #EE2A24;
   }
 
-  
+.soreboardGrid {
+  display: grid;
+  grid-template-columns: repeat(3, min-content);
+  grid-template-rows: repeat(1, min-content);
+  justify-content: center;
+  margin-top: 10px;
+  gap: 5%;
+}
+
+.scoreboardGridItem {
+  height: 40vh;
+  width: auto;
+}
+
+
+.scoreboardRendering {
+  display: flex;
+  justify-content: center;
+}
+
+.table {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.scoreboardButton {
+  background-color: #EE2A24 ;
+  color: white;
+  height: 50%;
+  width: 15%;
+  border-radius: 10px;
+  border: blue;
+  font-size:x-large;
+}
+
+.scoreboardButton:hover {
+  background-color: #ec6661
+}
+
+.scoreboardButtonDiv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 25px 0px;
+}
