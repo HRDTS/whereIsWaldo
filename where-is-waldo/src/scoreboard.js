@@ -6,6 +6,7 @@ import PokemonHard from './img/pokemonRealHard.jpg'
 import RenderScoreboard1 from "./renderScoreboard1";
 import RenderScoreboard2 from "./renderScoreboard2";
 import RenderScoreboard3 from "./renderScoreboard3";
+import { Link } from "react-router-dom";
 
 /*
 if 1, select 1.
@@ -16,7 +17,7 @@ put maps in an array, return based on argument.
 */
 
 function Scoreboard () {
-   const [selectedMap, setSelectedMap] = useState(1)
+   const [selectedMap, setSelectedMap] = useState(0)
 
    function selectScoreboard (index) {
       const allScoreboards = [RenderScoreboard1, RenderScoreboard2, RenderScoreboard3]
@@ -33,19 +34,21 @@ return (
     <div>
          <header className="homePageHeader2">
             <span className="headerLeft">&nbsp;&nbsp;</span>
-             <img className="homePageLogo" src={Logo}/> 
-             <div className="headerRight">return to home page</div>
+            <Link to='/'><img className="homePageLogo" src={Logo}/> </Link>
+             <div className="headerRight"><Link to='/'>Home</Link></div>
              </header>
             <div className="scoreboardButtonDiv">
                <button className="scoreboardButton">Play the selected level</button>
             </div>
              <div className="soreboardGrid">
-                <img className="scoreboardGridItem" src={pokemonEasy} onClick={() => setSelectedMap(0)} style={selectedMap == 0 ? {border: "10px solid limegreen"} : null}/>
-                <img className="scoreboardGridItem" src={pokemonMedium} onClick={() => setSelectedMap(1)} style={selectedMap == 1 ? {border: "10px solid limegreen"} : null}/>
-                <img className="scoreboardGridItem" src={PokemonHard} onClick={() => setSelectedMap(2)} style={selectedMap == 2 ? {border: "10px solid limegreen"} : null}/>
+                <img className="scoreboardGridItem" src={pokemonEasy} onClick={() => setSelectedMap(0)} style={selectedMap == 0 ? {border: "3px solid #00AEEF"} : null}/>
+                <img className="scoreboardGridItem" src={pokemonMedium} onClick={() => setSelectedMap(1)} style={selectedMap == 1 ? {border: "3px solid #00AEEF"} : null}/>
+                <img className="scoreboardGridItem" src={PokemonHard} onClick={() => setSelectedMap(2)} style={selectedMap == 2 ? {border: "3px solid #00AEEF"} : null}/>
              </div>
-
+                  <div className="tableOutside">
                   <ScoreboardComponent/>
+                  </div>
+                  
     </div>
 )
 }
