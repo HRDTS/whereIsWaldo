@@ -49,9 +49,10 @@ async function run(username, time) {
 
 
 
-function Parent() {
+function Parent(props) {
 
   const [map, selectedMap] = useState(0)
+  const background = props.background
 
   const usersRefEasy = ref(db, 'usersv2Easy');
       const usersRef = ref(db, 'usersv2');
@@ -172,12 +173,23 @@ function Parent() {
 
     //
 
+    const backgroundSelection = (index) => {
+      let array = [
+      <Background1 selectedCoordinates={selectedCoordinates} setSelectedCoordinates={passSelectedCoordinates}/>, 
+      <Background2 selectedCoordinates={selectedCoordinates} setSelectedCoordinates={passSelectedCoordinates}/>, 
+      <Background3 selectedCoordinates={selectedCoordinates} setSelectedCoordinates={passSelectedCoordinates}/>]
+
+      return (
+        array[index]
+      )
+    }
+
 
     return (
         <div className="parentDiv" >
-            {timer.timerStarted ? submitScoreForm() : null}
+            {!timer.timerStarted ? submitScoreForm() : null}
             <Navbar pokemon1={Tangela} pokemon2={Scyther} pokemon3={Diglet} scoreTracker={scoreTracker}/>
-            <Background1 selectedCoordinates={selectedCoordinates} setSelectedCoordinates={passSelectedCoordinates}/>
+            {backgroundSelection(background)}
         </div>
     )
 }
