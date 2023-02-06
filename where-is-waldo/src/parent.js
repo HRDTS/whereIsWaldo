@@ -12,6 +12,9 @@ import Kakuna from './img/Character.Kakuna.png'
 import Stanler from './img/Character.Stanler.png'
 import Bellosom from './img/Character.Bellosom.png'
 import Machoke from './img/Character.Machoke.png'
+import Professor from './img/professorOak.png'
+import Ash from './img/ashKetchum.png'
+import Brendan from './img/brendan.png'
 import { db, firestore } from './firebase.js'
 import { getDatabase, ref, set, onValue, get } from "firebase/database";
 import { collection, addDoc } from "firebase/firestore";
@@ -51,8 +54,10 @@ async function run(username, time) {
 
 function Parent(props) {
 
-  const [map, selectedMap] = useState(0)
   const background = props.background
+  const [map, selectedMap] = useState(background)
+
+
 
   const usersRefEasy = ref(db, 'usersv2Easy');
       const usersRef = ref(db, 'usersv2');
@@ -78,9 +83,10 @@ function Parent(props) {
     const divRef = useRef();
 
     const [scoreTracker, setScoreTracker] = useState({location1: false, location2: false, location3: false})
-    const [gameStillRunning, setGameStillRunning] = useState(true)
     const [selectedCoordinates, setSelectedCoordinates] = useState({x: 0, y: 0, characterClicked: '', characterSelected: ''})
-    const [timer, setTimer] = useState({timerStarted: true, seconds: 0})
+    const [seconds, setSeconds] = useState(0)
+    const [minutes, setMinutes] = useState(0)
+    const [timerStarted, setTimerStarted] = useState(true)
 
     function mouseCoordinates (event) {
         //setTimer({...timer, timerStarted: true})
@@ -101,7 +107,6 @@ function Parent(props) {
               for(let i in data) {
                 if(xPosPercentage > data[i].x1 && xPosPercentage < data[i].x2
                   && yPosPercentage > data[i].y1 && yPosPercentage < data[i].y2) {
-                    console.log('YEAASSHHHHH')
                     setSelectedCoordinates({...selectedCoordinates, x: xPosPercentage, y: yPosPercentage, characterClicked: i})
                     break
                 }
@@ -124,33 +129,42 @@ function Parent(props) {
             let copyOfScoreTracker = scoreTracker
             copyOfScoreTracker[fixLocation] = true
             setScoreTracker({...scoreTracker, copyOfScoreTracker})
-        }
+        } 
         if(scoreTracker.location1 == true && scoreTracker.location2 == true && scoreTracker.location3) {
             console.log('we got a winner')
-            setTimer({...timer, timerStarted: false})
+            setTimerStarted(false)
         }
         console.log(scoreTracker)
     }, [selectedCoordinates])
+
+    useEffect(() => {
+      if(!(selectedCoordinates.characterClicked === selectedCoordinates.characterSelected) && !(selectedCoordinates.characterClicked != ''))
+      setSelectedCoordinates({...selectedCoordinates, characterSelected: ''})
+    })
 
     function passSelectedCoordinates (event) {
         setSelectedCoordinates({...selectedCoordinates, characterSelected: event.target.value})
     }
 
-
-    // TIMER - place your timer code here
-    const startTimer = () => {
-      if(timer.timerStarted)
-      setTimer({...timer, seconds: timer.seconds + 1})
-    }
+    let timer;
 
     useEffect(() => {
-      const interval = setInterval(() => startTimer(), 1000);
+      if(timerStarted) {
+        timer = setInterval(() => {
 
-      return () => clearInterval(interval)
-    })
-    //
+          setSeconds(seconds+1)
+  
+          if(seconds===59) {
+            setMinutes(minutes+1)
+            setSeconds(0)
+          }
 
-    // FORM - place your form code here
+        }, 1000)
+  
+        return () => clearInterval(timer)
+      }
+
+    }, [seconds])
 
     const submitScoreToFirestore = (e) => {
       e.preventDefault();
@@ -158,10 +172,10 @@ function Parent(props) {
     }
 
     const submitScoreForm = () => {
-      const endTime = timer.seconds
+      const endTime = ((minutes * 60) + seconds)
       return (
         <div>
-          <h1>your time is: {endTime}</h1>
+          <h1>your time is: {endTime} seconds</h1>
           <form onSubmit={submitScoreToFirestore}>
             <label>your name:</label>
             <input></input>
@@ -171,7 +185,6 @@ function Parent(props) {
       )
     }
 
-    //
 
     const backgroundSelection = (index) => {
       let array = [
@@ -184,11 +197,19 @@ function Parent(props) {
       )
     }
 
+    const navbarCharacterSelection = (index) => {
+      let array = [
+        {pokemon1: Rattata, pokemon2: Krabby, pokemon3: Kakuna, trainer: Professor },
+        {pokemon1: Tangela, pokemon2: Scyther, pokemon3:Diglet, trainer: Ash},
+        {pokemon1: Stanler, pokemon2: Bellosom, pokemon3: Machoke, trainer: Brendan}
+      ]
+      return array[index]
+    }
 
     return (
         <div className="parentDiv" >
-            {!timer.timerStarted ? submitScoreForm() : null}
-            <Navbar pokemon1={Tangela} pokemon2={Scyther} pokemon3={Diglet} scoreTracker={scoreTracker}/>
+            {!timerStarted ? submitScoreForm() : null}
+            <Navbar pokemon1={navbarCharacterSelection(background).pokemon1} pokemon2={navbarCharacterSelection(background).pokemon2} pokemon3={navbarCharacterSelection(background).pokemon3} trainer={navbarCharacterSelection(background).trainer} scoreTracker={scoreTracker} minutes={minutes} seconds={seconds}/>
             {backgroundSelection(background)}
         </div>
     )
