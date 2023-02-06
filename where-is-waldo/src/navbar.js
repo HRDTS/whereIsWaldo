@@ -1,7 +1,6 @@
 import React, { Component, useCallback, useEffect, useState } from "react";
 import Logo from './img/Logo.Waldo.svg'
-import Pokemon from './img/Logo.Pokemon.png'
-import Professor from './img/professorOak.png'
+import { Link } from "react-router-dom";
 
 function Navbar(props) {
 
@@ -19,7 +18,7 @@ function Navbar(props) {
 
             <div className="headerLeft">Your time: {minutes < 10? '0'+minutes: minutes}:{seconds < 10? '0'+seconds : seconds}</div>
 
-            <img className="navbarPokemon" src={Logo}/>
+            <Link to='/'> <img className="navbarPokemon" src={Logo}/></Link>
 
             <div className="headerRight">
                 <img className="navbarPokemon" id='trainer' src={trainer}/>

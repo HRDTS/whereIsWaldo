@@ -38,7 +38,10 @@ return (
              <div className="headerRight"><Link to='/'>Home</Link></div>
              </header>
             <div className="scoreboardButtonDiv">
-               <button className="scoreboardButton">Play the selected level</button>
+               <Link to={'/level' + (selectedMap + 1)} className="scoreboardButtonOutside">
+               <button className="scoreboardButton">Play the selected level</button>   
+               </Link>
+               
             </div>
              <div className="soreboardGrid">
                 <img className="scoreboardGridItem" src={pokemonEasy} onClick={() => setSelectedMap(0)} style={selectedMap == 0 ? {border: "3px solid #00AEEF"} : null}/>
