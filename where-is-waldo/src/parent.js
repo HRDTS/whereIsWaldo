@@ -1,4 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router-dom'; // RRDv6  
 import Background1 from "./background1";
 import Background2 from "./background2";
 import Background3 from "./background3";
@@ -37,9 +39,9 @@ import { collection, addDoc } from "firebase/firestore";
 */
 
 
-async function run(username, time) {
+async function run(username, time, whichDatabase) {
   try{
-    const docRef = await addDoc(collection(firestore, "users"), {
+    const docRef = await addDoc(collection(firestore, whichDatabase), {
       username: username,
       time: time,
       date: new Date()
@@ -54,6 +56,7 @@ async function run(username, time) {
 
 function Parent(props) {
 
+  const navigate = useNavigate(); // RRDv6
   const background = props.background
   const [map, selectedMap] = useState(background)
 
@@ -166,22 +169,32 @@ function Parent(props) {
 
     }, [seconds])
 
-    const submitScoreToFirestore = (e) => {
+    const submitScoreToFirestore = (e, time, whichDatabase) => {
       e.preventDefault();
-      run(e.target[0].value, timer.seconds)
+      run(e.target[0].value, time, whichDatabase);
+      navigate("/", { replace: true });
     }
 
-    const submitScoreForm = () => {
+    const submitScoreForm = (whichDatabase) => {
       const endTime = ((minutes * 60) + seconds)
       return (
-        <div>
-          <h1>your time is: {endTime} seconds</h1>
-          <form onSubmit={submitScoreToFirestore}>
-            <label>your name:</label>
-            <input></input>
-            <button>Submit score</button>
-          </form>
+        <div className="submitFormOuter">
+          <div className="submitFormInner">
+
+            <h1>your time is: {endTime} seconds</h1>
+            <form  onSubmit={(e) => submitScoreToFirestore(e, endTime, whichDatabase)}>
+              <label>your name:</label>
+              <input className="submitForm"></input>
+              <div>
+              <button type="submit">Submit score</button>
+                <Link to='/'><button type="button">Don't submit and return</button></Link>
+              </div>
+
+            </form>
+
+          </div>
         </div>
+
       )
     }
 
@@ -206,9 +219,21 @@ function Parent(props) {
       return array[index]
     }
 
+    const firebaseSelection = (index) => {
+      let array = [
+        'users',
+        'users2',
+        'users3'
+      ]
+
+      return (
+        array[index]
+      )
+    }
+
     return (
         <div className="parentDiv" >
-            {!timerStarted ? submitScoreForm() : null}
+            {!timerStarted ? submitScoreForm(firebaseSelection(background)) : null}
             <Navbar pokemon1={navbarCharacterSelection(background).pokemon1} pokemon2={navbarCharacterSelection(background).pokemon2} pokemon3={navbarCharacterSelection(background).pokemon3} trainer={navbarCharacterSelection(background).trainer} scoreTracker={scoreTracker} minutes={minutes} seconds={seconds}/>
             {backgroundSelection(background)}
         </div>
