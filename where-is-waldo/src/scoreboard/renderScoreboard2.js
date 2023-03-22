@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { collection, doc, getDoc, getDocs } from "firebase/firestore";
-import { firestore } from "./firebase";
+import { firestore } from "../index/firebase";
 import { tab } from "@testing-library/user-event/dist/tab";
 
 async function fetchScoreboard() {
     try {
-        const querySnapshot = await getDocs(collection(firestore, 'users3'))
+        const querySnapshot = await getDocs(collection(firestore, 'users2'))
         const wholeData = []
 
         querySnapshot.forEach((doc) => {
@@ -19,11 +19,11 @@ async function fetchScoreboard() {
     }
 }
 
-function RenderScoreboard3 () {
+function RenderScoreboard2 () {
     const [data, setData] = useState([])
     const [table, setTable] = useState()
 
-    useEffect(() => {
+    useEffect(() => { // sort the users based on their time.
         fetchScoreboard()
         .then(data => data.sort((a,b) => parseFloat(a.time) - parseFloat(b.time)))
         .then(data => setData(data))
@@ -45,7 +45,7 @@ function RenderScoreboard3 () {
 
 
     return (
-        <table className="table">
+        <table className="table">  
             <tbody>
             <tr>
                 <th>place</th>
@@ -61,4 +61,4 @@ function RenderScoreboard3 () {
     )
 }
 
-export default RenderScoreboard3;
+export default RenderScoreboard2;

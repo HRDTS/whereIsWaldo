@@ -1,5 +1,5 @@
 import React, { Component, useCallback, useEffect, useState } from "react";
-import Logo from './img/Logo.Waldo.svg'
+import Logo from '../img/Logo.Waldo.svg'
 import { Link } from "react-router-dom";
 
 function Navbar(props) {
@@ -14,7 +14,7 @@ function Navbar(props) {
 
 
     return (
-        <nav className="homePageHeader2">
+        <nav className="header">
 
             <div className="headerLeft">Your time: {minutes < 10? '0'+minutes: minutes}:{seconds < 10? '0'+seconds : seconds}</div>
 

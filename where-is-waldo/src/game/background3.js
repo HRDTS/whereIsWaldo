@@ -1,5 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
-import pokemonHard from './img/pokemonRealHard.jpg'
+import pokemonHard from '../img/pokemonRealHard.jpg'
+
+// comments on background1.js apply to this component.
 
 function Background1(props) {
 
