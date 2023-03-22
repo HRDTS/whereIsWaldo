@@ -1,10 +1,10 @@
 import { BrowserRouter, Routes, Route, Router} from "react-router-dom";
-import history from './history';
-import Navbar from "./navbar";
-import Home from "./home";
-import Parent from "./parent";
-import Scoreboard from "./scoreboard";
+import Home from "../homepage/home";
+import Parent from "../game/parent";
+import Scoreboard from "../scoreboard/scoreboard";
 
+
+// The component <Parent/> gets an element number passed to it. This element number determines which background, navigation bar and database to render.
 
 const RouteSwitch = () => {
     return (
