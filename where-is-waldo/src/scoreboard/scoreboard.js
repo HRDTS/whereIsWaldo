@@ -38,16 +38,17 @@ return (
              <div className="headerRight"><Link to='/'></Link></div>
              </header>
              <div className="scoreboardBody">
+               <div className="scoreboardUpperText"> Find and click on your favourite map below and see what other people scored! </div>
+               <div className="scoreboardGrid">
+                  <img className="scoreboardGridItem" src={pokemonEasy} onClick={() => setSelectedMap(0)} style={selectedMap == 0 ? {border: "3px solid #00AEEF"} : null}/>
+                  <img className="scoreboardGridItem" src={pokemonMedium} onClick={() => setSelectedMap(1)} style={selectedMap == 1 ? {border: "3px solid #00AEEF"} : null}/>
+                  <img className="scoreboardGridItem" src={PokemonHard} onClick={() => setSelectedMap(2)} style={selectedMap == 2 ? {border: "3px solid #00AEEF"} : null}/>
+               </div>
                <div className="scoreboardButtonDiv">
                   <Link to={'/level' + (selectedMap + 1)} className="scoreboardButtonOutside">
                   <button className="scoreboardButton">Play the selected level</button>   
                   </Link>
                   
-               </div>
-               <div className="scoreboardGrid">
-                  <img className="scoreboardGridItem" src={pokemonEasy} onClick={() => setSelectedMap(0)} style={selectedMap == 0 ? {border: "3px solid #00AEEF"} : null}/>
-                  <img className="scoreboardGridItem" src={pokemonMedium} onClick={() => setSelectedMap(1)} style={selectedMap == 1 ? {border: "3px solid #00AEEF"} : null}/>
-                  <img className="scoreboardGridItem" src={PokemonHard} onClick={() => setSelectedMap(2)} style={selectedMap == 2 ? {border: "3px solid #00AEEF"} : null}/>
                </div>
                      <div className="tableOutside">
                      <ScoreboardComponent/>

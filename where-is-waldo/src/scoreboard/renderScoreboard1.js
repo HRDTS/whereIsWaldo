@@ -33,7 +33,7 @@ function RenderScoreboard1 () {
     useEffect(() => {
 
         const tableePattern = data.map((element, index) => 
-            <tr key={index}>
+            <tr key={index} className='tableRow'>
                 <td className="place">{index + 1}</td>
                 <td className="username">{element.username}</td>
                 <td className="time">{element.time}</td>
@@ -46,15 +46,15 @@ function RenderScoreboard1 () {
 
     return (
         <table className="table">
-            <tbody>
-            <tr>
-                <th>place</th>
-                <th>name</th>
-                <th>time</th>
-                <th>date</th>
+            <tbody className="tableBody">
+            <tr className="tableRow">
+                <th className="placeHeader">place</th>
+                <th className="usernameHeader">name</th>
+                <th className="timeHeader">time</th>
+                <th className="dateHeader">date</th>
             </tr>
             </tbody>
-            <tbody>
+            <tbody className="tableBody">
                 {table}
             </tbody>
         </table>
