@@ -176,7 +176,7 @@ function Parent(props) {
             <h1>your time is: {endTime} seconds</h1>
             <form  onSubmit={(e) => submitScoreToFirestore(e, endTime, whichDatabase)}>
               <label>your name:</label>
-              <input className="submitForm"></input>
+              <input className="submitForm" maxLength={50}></input>
               <div>
               <button type="submit">Submit score</button>
                 <Link to='/'><button type="button">Don't submit and return</button></Link>
