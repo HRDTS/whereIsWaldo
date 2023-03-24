@@ -175,7 +175,7 @@ function Parent(props) {
 
             <h1>your time is: {endTime} seconds</h1>
             <form  onSubmit={(e) => submitScoreToFirestore(e, endTime, whichDatabase)}>
-              <label>your name:</label>
+              <label>Your name:</label>
               <input className="submitForm" maxLength={50}></input>
               <div>
               <button type="submit">Submit score</button>
@@ -207,11 +207,20 @@ function Parent(props) {
     }
 
     // This code is for the navigation bar.
-    const navbarCharacterSelection = (index) => {
+    const navbarCharacterSelectionImage = (index) => {
       let array = [
         {pokemon1: Rattata, pokemon2: Krabby, pokemon3: Kakuna, trainer: Professor },
         {pokemon1: Tangela, pokemon2: Scyther, pokemon3:Diglet, trainer: Ash},
         {pokemon1: Stanler, pokemon2: Bellosom, pokemon3: Machoke, trainer: Brendan}
+      ]
+      return array[index]
+    }
+
+    const navbarCharacterSelectionName = (index) => {
+      let array = [
+        {pokemon1: 'Rattata', pokemon2: 'Krabby', pokemon3: 'Kakuna', trainer: 'Professor' },
+        {pokemon1: 'Tangela', pokemon2: 'Scyther', pokemon3: 'Diglet', trainer: 'Ash'},
+        {pokemon1: 'Stanler', pokemon2: 'Bellosom', pokemon3: 'Machoke', trainer: 'Brendan'}
       ]
       return array[index]
     }
@@ -232,7 +241,20 @@ function Parent(props) {
     return (
         <div className="parentDiv" >
             {!timerStarted ? submitScoreForm(firebaseSelection(background)) : null}
-            <Navbar pokemon1={navbarCharacterSelection(background).pokemon1} pokemon2={navbarCharacterSelection(background).pokemon2} pokemon3={navbarCharacterSelection(background).pokemon3} trainer={navbarCharacterSelection(background).trainer} scoreTracker={scoreTracker} minutes={minutes} seconds={seconds}/>
+
+            <Navbar 
+            pokemon1Image={navbarCharacterSelectionImage(background).pokemon1}
+            pokemon1Name={navbarCharacterSelectionName(background).pokemon1} 
+            pokemon2Image={navbarCharacterSelectionImage(background).pokemon2}
+            pokemon2Name={navbarCharacterSelectionName(background).pokemon2}  
+            pokemon3Image={navbarCharacterSelectionImage(background).pokemon3}
+            pokemon3Name={navbarCharacterSelectionName(background).pokemon3} 
+
+            trainerImage={navbarCharacterSelectionImage(background).trainer} 
+            trainerName={navbarCharacterSelectionName(background).trainer}
+            scoreTracker={scoreTracker} minutes={minutes} 
+            seconds={seconds}/>
+
             {backgroundSelection(background)}
         </div>
     )

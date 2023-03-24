@@ -5,10 +5,14 @@ import hamburgerMenu from '../img/hamburgerMenu.png'
 
 function Navbar(props) {
 
-    const pokemon1 = props.pokemon1
-    const pokemon2 = props.pokemon2
-    const pokemon3 = props.pokemon3
-    const trainer = props.trainer
+    const pokemon1Image = props.pokemon1Image
+    const pokemon1Name = props.pokemon1Name
+    const pokemon2Image = props.pokemon2Image
+    const pokemon2Name = props.pokemon2Name
+    const pokemon3Image = props.pokemon3Image
+    const pokemon3Name = props.pokemon3Name
+    const trainerImage = props.trainerImage
+    const trainerName = props.trainerName
     const scoreTracker = props.scoreTracker
     const seconds = props.seconds
     const minutes = props.minutes
@@ -37,20 +41,44 @@ function Navbar(props) {
                 <img className="hamburgerMenu" src={hamburgerMenu}/>
                     <div className="headerRightHamburgerPokemons" ref={headerRightHamburgerPokemonsRef}>
 
-                            <img className="navbarPokemonHamburger" id='trainer' src={trainer}/>
-                            <img className="navbarPokemonHamburger" id="pokemon1" src={pokemon1} style={{ backgroundColor: scoreTracker.location1 ? 'green' : undefined }} />
-                            <img className="navbarPokemonHamburger" id="pokemon2" src={pokemon2} style={{ backgroundColor: scoreTracker.location2 ? 'green' : undefined }} />
-                            <img className="navbarPokemonHamburger" id="pokemon3" src={pokemon3} style={{ backgroundColor: scoreTracker.location3 ? 'green' : undefined }} />
+                            <div className="pokemonAndName" style={{ backgroundColor: scoreTracker.location1 ? 'green' : undefined }} >
+                                <img className="navbarPokemonHamburger" id="pokemon1" src={pokemon1Image} />
+                                <div id="pokemonName">{pokemon1Name}</div>
+                            </div>
+
+                            <div className="pokemonAndName" style={{ backgroundColor: scoreTracker.location2 ? 'green' : undefined }}>
+                                <img className="navbarPokemonHamburger" id="pokemon2" src={pokemon2Image}  />
+                                <div id="pokemonName">{pokemon2Name}</div>
+                            </div>
+
+                            <div className="pokemonAndName" style={{ backgroundColor: scoreTracker.location3 ? 'green' : undefined }}>
+                                <img className="navbarPokemonHamburger" id="pokemon3" src={pokemon3Image}  />
+                                <div id="pokemonName">{pokemon3Name}</div>
+                            </div>
+
                     </div>
 
                 </div>
             </div>
             
             <div className="headerRight">
-                <img className="navbarPokemon" id='trainer' src={trainer}/>
-                <img className="navbarPokemon" id="pokemon1" src={pokemon1} style={{ backgroundColor: scoreTracker.location1 ? 'green' : undefined }} />
-                <img className="navbarPokemon" id="pokemon2" src={pokemon2} style={{ backgroundColor: scoreTracker.location2 ? 'green' : undefined }} />
-                <img className="navbarPokemon" id="pokemon3" src={pokemon3} style={{ backgroundColor: scoreTracker.location3 ? 'green' : undefined }} />
+                <img className="navbarPokemon" id='trainer' src={trainerImage}/>
+
+                <div className="pokemonAndName" style={{ backgroundColor: scoreTracker.location1 ? 'green' : undefined }}>
+                    <img className="navbarPokemon" id="pokemon1" src={pokemon1Image}  />
+                    <div id="pokemonName">{pokemon1Name}</div>
+                </div>
+
+                <div className="pokemonAndName" style={{ backgroundColor: scoreTracker.location2 ? 'green' : undefined }}>
+                    <img className="navbarPokemon" id="pokemon2" src={pokemon2Image}  />
+                    <div id="pokemonName">{pokemon2Name}</div>
+                </div>
+
+                <div className="pokemonAndName" style={{ backgroundColor: scoreTracker.location3 ? 'green' : undefined }}>
+                    <img className="navbarPokemon" id="pokemon3" src={pokemon3Image}  />
+                    <div id="pokemonName">{pokemon3Name}</div>
+                </div >
+
             </div>
 
 
