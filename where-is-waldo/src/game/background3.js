@@ -16,21 +16,23 @@ function Background1(props) {
         clicked ? setClicked(false) : setClicked(true);
     }
 
-    useEffect(() => {
+    // I am using a ref() to store the [x,y] coordinates initially. 
+    useEffect(() => {  // 
         selectRef.current.style.left = `${selectedCoordinates.x}%`
         selectRef.current.style.top = `${selectedCoordinates.y}%`
         console.log(selectedCoordinates.x)
     }, [selectedCoordinates])
 
-    useEffect(() => {
+    useEffect(() => { // this is where I lift up the [x,y] coordinates to the parent.js file.
         if(selectedCoordinates.x > 50 && dropdownRef.current != null) {
             let one = `${selectedCoordinates.x}%`
             let two = `${selectRef.current.offsetWidth}px`
             let three = `"calc(${one} - ${two})"`
             let position = 
-            selectRef.current.style.left = `calc(${one} - ${two})`
-        }
-    })
+            selectRef.current.style.left = `calc(${one} - ${two})` // this little calculation is neccessary to prevent the select menu to go out of bounds.
+        } // Here is the idea: when the user clicks on the screen, the dropdown menu pops up and the cursor will by default be positioned on the left side of the dropdown menu. 
+    }) // when the user clicks close to the right edge of the screen, the dropdown menu goes out of bounds, but with this code the dropdown menu pops up on the left side if you click anywhere on left: 50 +
+
 
 
     const renderDropdown = () => {

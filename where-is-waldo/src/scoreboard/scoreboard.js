@@ -34,8 +34,9 @@ return (
     <div>
          <header className="header">
             <span className="headerLeft">&nbsp;&nbsp;</span>
-            <Link to='/'><img className="homePageLogo" src={Logo}/> </Link>
-             <div className="headerRight"><Link to='/'></Link></div>
+            <Link to='/' className="gameLogo"><img className="homePageLogo" src={Logo}/> </Link>
+             <div className="headerRight"></div>
+             <div className="pseudoHeaderRight"></div>
              </header>
              <div className="scoreboardBody">
                <div className="scoreboardUpperText"> Find and click on your favourite map below and see what other people scored! </div>

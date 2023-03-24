@@ -12,12 +12,13 @@ function Background1(props) {
     const selectedCoordinates = props.selectedCoordinates
     const setSelectedCoordinates = props.setSelectedCoordinates
 
-    function cycleClicked () { // this function render a dropdown menu 'smoothly'. The dropdown menu disappears if you click somehere else than the dropdown menu.
-        clicked ? setClicked(false) : setClicked(true);
+    function cycleClicked (e) { // this function render a dropdown menu 'smoothly'. The dropdown menu disappears if you click somehere else than the dropdown menu.
+        console.log(e.target.id)
+        clicked && e.target.id != 'charSelectionMenu' ? setClicked(false) : setClicked(true);
     }
 
-    // I am using a ref() to store the [x,y] coordinates initially. I found out that the [x] coordinate - so the width - is a bit off in this component and it requires a correction.  
-    useEffect(() => {  // The [x] coordinate is correct in the useEffect BELOW this useEffect. After I correct this [x] coordinate, I send the [x,y] coordinates to the parent.js file through the setSelectedCoordinates.
+    // I am using a ref() to store the [x,y] coordinates initially. 
+    useEffect(() => {  // 
         selectRef.current.style.left = `${selectedCoordinates.x}%`
         selectRef.current.style.top = `${selectedCoordinates.y}%`
         console.log(selectedCoordinates.x)
@@ -29,14 +30,15 @@ function Background1(props) {
             let two = `${selectRef.current.offsetWidth}px`
             let three = `"calc(${one} - ${two})"`
             let position = 
-            selectRef.current.style.left = `calc(${one} - ${two})`
-        }
-    })
+            selectRef.current.style.left = `calc(${one} - ${two})` // this little calculation is neccessary to prevent the select menu to go out of bounds.
+        } // Here is the idea: when the user clicks on the screen, the dropdown menu pops up and the cursor will by default be positioned on the left side of the dropdown menu. 
+    }) // when the user clicks close to the right edge of the screen, the dropdown menu goes out of bounds, but with this code the dropdown menu pops up on the left side if you click anywhere on left: 50 +
 
 
     const renderDropdown = () => {
         
         return (
+            <div>
             <form id="charSelectionForm" >
             <select id="charSelectionMenu" onClick={setSelectedCoordinates} ref={dropdownRef}>
                 <option>select pokemon</option>
@@ -45,14 +47,15 @@ function Background1(props) {
                 <option value='location3'>Kakuna</option>
             </select>
     </form>
+    </div>
         )
     }
 
     return (
-        <div className="backgroundDiv" ref={divRef} onClick={cycleClicked}>
+        <div className="backgroundDiv" ref={divRef} onClick={cycleClicked} >
             <img src={pokemonEasy}/>
             <div className="selectionArea" ref={selectRef} >
-                {clicked? renderDropdown() : null}
+                {clicked ? renderDropdown() : null}
             </div>
         </div>
     )
