@@ -118,7 +118,7 @@ function Parent(props) {
 
     useEffect(()=> {
         console.log(selectedCoordinates)
-        if(selectedCoordinates.characterClicked === selectedCoordinates.characterSelected && selectedCoordinates.characterClicked != '') {// the initial state for characterSelected and characterClicked is '', so I make sure that doesn't cause any bugs.
+        if(selectedCoordinates.characterClicked === selectedCoordinates.characterSelected && selectedCoordinates.characterClicked != '') {// the initial state for characterSelected and characterClicked is '', so I make sure that doesn't cause any bugs. 
             console.log('MATCH!')
             let fixLocation = selectedCoordinates.characterSelected
             let copyOfScoreTracker = scoreTracker
@@ -132,10 +132,10 @@ function Parent(props) {
         console.log(scoreTracker)
     }, [selectedCoordinates])
 
-    useEffect(() => {
+    useEffect(() => { // resets the characterSelected if the clicked position doesn't contain the characterSelected. 
       if(!(selectedCoordinates.characterClicked === selectedCoordinates.characterSelected) && !(selectedCoordinates.characterClicked != ''))
       setSelectedCoordinates({...selectedCoordinates, characterSelected: ''})
-    })
+    }, [selectedCoordinates])
 
     function passSelectedCoordinates (event) {
         setSelectedCoordinates({...selectedCoordinates, characterSelected: event.target.value})

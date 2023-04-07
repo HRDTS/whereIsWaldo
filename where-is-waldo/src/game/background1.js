@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import pokemonEasy from '../img/pokemonEasy.jpg'
 
-// NOTE: background1, background2 and background3 all work the same way. The only thing that changes is the map that is displayed and logically the pokemons the user can select.
+// NOTE: background1, background2 and background3 all work the same way. The only thing that changes is the map that is displayed and the pokemons the user can select.
 
 function Background1(props) {
 
@@ -30,8 +30,8 @@ function Background1(props) {
             let two = `${selectRef.current.offsetWidth}px`
             let three = `"calc(${one} - ${two})"`
             let position = 
-            selectRef.current.style.left = `calc(${one} - ${two})` // this little calculation is neccessary to prevent the select menu to go out of bounds.
-        } // Here is the idea: when the user clicks on the screen, the dropdown menu pops up and the cursor will by default be positioned on the left side of the dropdown menu. 
+            selectRef.current.style.left = `calc(${one} - ${two})` // this calculation is neccessary to prevent the select menu to go out of bounds.
+        } // when the user clicks on the screen, the dropdown menu pops up and the cursor will by default be positioned on the left side of the dropdown menu. 
     }) // when the user clicks close to the right edge of the screen, the dropdown menu goes out of bounds, but with this code the dropdown menu pops up on the left side if you click anywhere on left: 50 +
 
 
@@ -40,7 +40,7 @@ function Background1(props) {
         return (
             <div>
             <form id="charSelectionForm" >
-            <select id="charSelectionMenu" onClick={setSelectedCoordinates} ref={dropdownRef}>
+            <select id="charSelectionMenu" onTouchEnd={setSelectedCoordinates} ref={dropdownRef}>
                 <option>select pokemon</option>
                 <option value='location1'>Rattata</option>
                 <option value='location2'>Krabby</option>

@@ -556,13 +556,13 @@ code {
 }
 
 
-
 .grid1:hover, .grid2:hover, .grid3:hover {
   border:5px solid #ac4646;
 }
 
 a {
   text-decoration: none;
+  color: black;
 }
 
 .tableOutside {

@@ -12,8 +12,9 @@ function Background1(props) {
     const selectedCoordinates = props.selectedCoordinates
     const setSelectedCoordinates = props.setSelectedCoordinates
 
-    function cycleClicked () {
+    function cycleClicked (e) {
         clicked ? setClicked(false) : setClicked(true);
+        clicked && e.target.id != 'charSelectionMenu' ? setClicked(false) : setClicked(true);
     }
 
     // I am using a ref() to store the [x,y] coordinates initially. 
@@ -29,8 +30,8 @@ function Background1(props) {
             let two = `${selectRef.current.offsetWidth}px`
             let three = `"calc(${one} - ${two})"`
             let position = 
-            selectRef.current.style.left = `calc(${one} - ${two})` // this little calculation is neccessary to prevent the select menu to go out of bounds.
-        } // Here is the idea: when the user clicks on the screen, the dropdown menu pops up and the cursor will by default be positioned on the left side of the dropdown menu. 
+            selectRef.current.style.left = `calc(${one} - ${two})` // this calculation is neccessary to prevent the select menu to go out of bounds.
+        } // when the user clicks on the screen, the dropdown menu pops up and the cursor will by default be positioned on the left side of the dropdown menu. 
     }) // when the user clicks close to the right edge of the screen, the dropdown menu goes out of bounds, but with this code the dropdown menu pops up on the left side if you click anywhere on left: 50 +
 
 
