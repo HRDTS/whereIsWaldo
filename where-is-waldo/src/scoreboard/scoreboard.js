@@ -39,7 +39,7 @@ return (
              <div className="pseudoHeaderRight"></div>
              </header>
              <div className="scoreboardBody">
-               <div className="scoreboardUpperText"> Find and click on your favourite map below and see what other people scored! </div>
+               <div className="scoreboardUpperText"> Click on one of the maps below and see what other people scored! </div>
                <div className="scoreboardGrid">
                   <img className="scoreboardGridItem" src={pokemonEasy} onClick={() => setSelectedMap(0)} style={selectedMap == 0 ? {border: "3px solid #00AEEF"} : null}/>
                   <img className="scoreboardGridItem" src={pokemonMedium} onClick={() => setSelectedMap(1)} style={selectedMap == 1 ? {border: "3px solid #00AEEF"} : null}/>
