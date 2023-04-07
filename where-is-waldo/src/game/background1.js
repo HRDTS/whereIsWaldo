@@ -40,7 +40,7 @@ function Background1(props) {
         return (
             <div>
             <form id="charSelectionForm" >
-            <select id="charSelectionMenu" onTouchEnd={setSelectedCoordinates} ref={dropdownRef}>
+            <select id="charSelectionMenu" onTouchStart={setSelectedCoordinates} onChange={setSelectedCoordinates} ref={dropdownRef}>
                 <option>select pokemon</option>
                 <option value='location1'>Rattata</option>
                 <option value='location2'>Krabby</option>
