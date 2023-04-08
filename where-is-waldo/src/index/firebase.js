@@ -3,14 +3,14 @@ import { getDatabase, ref, set, onValue } from "firebase/database";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseApp = {
-    apiKey: "redacted",
-    authDomain: "redacted.firebaseapp.com",
-    databaseURL: "https://redacted-default-rtdb.europe-west1.firebasedatabase.app",
-    projectId: "redacted",
-    storageBucket: "redacted.appspot.com",
-    messagingSenderId: "redacted",
-    appId: "redacted",
-    measurementId: "redacted",
+    apiKey: REACT_APP_apiKey,
+    authDomain: REACT_APP_authDomain,
+    databaseURL: REACT_APP_databaseURL,
+    projectId: REACT_APP_projectId ,
+    storageBucket: REACT_APP_storageBucket,
+    messagingSenderId: REACT_APP_messagingSenderId,
+    appId: REACT_APP_appId,
+    measurementId: REACT_APP_measurementId,
   };
 
   const firebase = initializeApp(firebaseApp);
