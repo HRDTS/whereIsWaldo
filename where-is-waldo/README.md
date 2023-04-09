@@ -1,12 +1,15 @@
 <h1>Project title:</h1><br>
-Where is Waldo: a mobile optimized, fully responsive Pokemon themed find-and-click game based on the British puzzle book series ‘Where’s Wally’.
+<strong>Where is Waldo:</strong> a mobile optimized, fully responsive Pokemon themed find-and-click game based on the British puzzle book series ‘Where’s Wally’. <br>
 
-<strong> LIVE: </strong>
+<strong> LIVE: https://where-is-waldo-pm9g.vercel.app/</strong>
 
 <h2>Screenshot one: </h2> <br>
 
+![Screenshot of the website homepage](https://raw.githubusercontent.com/HRDTS/whereIsWaldo/main/where-is-waldo/waldoss1.png?token=GHSAT0AAAAAACAQB4WR3HSL7Z7WF6XD5NOKZBSA24A)
+
 <h2>Screenshot two: </h2> <br>
 
+![Screenshot of a level](https://raw.githubusercontent.com/HRDTS/whereIsWaldo/main/where-is-waldo/waldoss2.png?token=GHSAT0AAAAAACAQB4WQTW6QGXGSB3PGNKJ6ZBSA3SA)
 
 <h1>Project Description:</h1><br>
 The game is simple: users can play up to three levels. Each level has its own map with a bunch of Pokemons on it. The goal is to find three Pokemons on the map. The ‘target’ Pokemons are listed in the header. If the user sees the Pokemon on the map, they can click on it and a drop down menu will be rendered. This drop down menu contains three Pokemon names. The user needs to select the correct name that matches the Pokemon. If the selected Pokemon is located correctly and the correct name is chosen, the user will get a point. Find all three Pokemons to win the game.
