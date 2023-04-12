@@ -1,0 +1,842 @@
+body {
+  margin: 0;
+  width: 100%;
+  height: auto;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+
+.backgroundDiv {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+}
+
+.backgroundDiv>img {
+  grid-area: auto;
+  max-width: 100%;
+  max-height: 100%;
+  width: 100%;
+  height: 100%;
+  grid-column: 1;
+  grid-row: 1;
+}
+
+
+.selectionArea {
+  display: grid;
+  grid-column: 1;
+  grid-row: 1;
+  position: relative;
+  height: fit-content;
+  width: fit-content;
+  z-index: 2;
+  border: 0px;
+}
+
+#charSelectionMenu, #charSelectionForm {
+  width:inherit;
+}
+
+.clickLayer {
+  display: flex;
+  border: 3px solid blue;
+  width: 100%;
+  min-height: inherit;
+  z-index: 2;
+}
+
+.navbar {
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  min-height: 20px;
+  max-height: fit-content;
+  background-color: red;
+  z-index: 4;
+}
+
+
+
+.navbarPokemon {
+  height: 80%;
+  width: auto;
+  transition: height 0.2s ease-in-out;
+  border-radius: 10%;
+}
+/*
+.navbarPokemon:hover {
+  height: 90%;
+  width: auto;
+}*/
+
+.homePage {
+  width: 100vw;
+  height: 100vh;
+}
+
+.homePageBody {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(255, 255, 255);
+  height: calc(100vh - 10vh);
+  width: 100vw;
+  max-width: 100vw;
+  gap: 5%;
+}
+
+.homePageGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 25%);
+  grid-template-rows: minmax(300px, 100%);
+  column-gap: 5%;
+  justify-content: center;
+  height: 100%;
+  max-height: 50%;
+  width: 100%;
+  max-width: 100%;
+  margin-top: 10px;
+}
+
+.homePageCharacters {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 50%;
+  max-height: 50%;
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 2%;
+}
+
+.homePageCharacter {
+  height: auto;
+  width: auto;
+  max-width: 33%;
+  max-height: 100%;
+}
+
+.homePageCharacterDiv{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 30%;
+  max-height: 30%;
+  width: 100%;
+  max-width: 100%;
+}
+
+.homePageLogo {
+  height: 100%;
+  width: auto;
+}
+
+.homePageHeader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to left, #EE2A24 50%, #00AEEF 50%);
+  height: 10vh;
+  max-height: 10vh;
+  position: sticky;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(to left, #EE2A24 50%, #00AEEF 50%);
+  height: 10vh;
+  width: 100%;
+  max-height: 10vh;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+@media(max-height: 500px) {
+  .header {
+    min-height: 100px;
+  }
+}
+
+.gameLogo {
+  height: 100%;
+  width: 100%;
+}
+
+.gameLogoImage, .gameLogo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+.headerRightHamburger {
+  display: none;
+  flex-direction: column;
+}
+
+.headerRightHamburgerPokemons {
+  display: none;
+  flex-direction: column;
+}
+
+.headerRightHamburgerPokemons.active {
+  position: absolute;
+  display: flex;
+  background-color: red;
+  top: 100%;
+  width: 100%;
+  height: fit-content;
+  max-width: 100%;
+  z-index: 5 ;
+}
+
+.hamburgerDiv {
+  position: relative;
+  height: 100%;
+  width: auto;
+  max-width: 100%;
+}
+
+.headerRightHamburgerPokemons.active > .hamburgerMenu {
+  background-color: wheat;
+}
+
+@media(max-width: 500px) {
+  .headerRightHamburgerPokemons.active {
+    width: 100%;
+  }
+}
+
+.navbarPokemonHamburger {
+  width: auto;
+  height: 100%;
+  max-height: 100%;
+  max-width: 100%;
+  z-index: 5;
+}
+
+.headerLeft {
+  display: flex;
+  min-width: 25%;
+  width: 25%;
+  max-width: 25%;
+  align-items: center;
+  justify-content: baseline;
+  color: black;
+  font-weight: bold;
+  font-size: 1.3vw;
+}
+
+@media(max-width: 1500px) {
+  .headerLeft{
+    font-size: 1.6vw;
+  }
+}
+
+@media(max-width: 1300px) {
+  .headerLeft{
+    font-size: 1.8vw;
+  }
+}
+
+@media(max-width: 1000px) {
+  .headerLeft{
+    font-size: 2vw;
+  }
+}
+
+@media(max-width: 800px) {
+  .headerLeft{
+    font-size: 2.6vw;
+  }
+}
+
+@media(max-width: 500px) {
+  .headerLeft{
+    font-size: 3vw;
+  }
+}
+
+.headerRight {
+  position: relative;
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  min-width: 25%;
+  width: 25%;
+  max-width: 25%;
+  height: 100%;
+  gap: 10%    ;
+}
+
+.hamburgerMenu{
+  max-width: 100%;
+  max-height: 100%;
+  width: 100%;
+  height: auto;
+}
+
+.headerRightHamburger {
+  position: relative;
+  display: none;
+  align-items: end;
+  justify-content: center;
+  height: 100%;
+  max-height: 100%;
+  min-width: 25%;
+  width: 25%;
+  max-width: 25%;
+}
+
+.pseudoHeaderRight {
+  display: none;
+  min-width: 25%;
+  width: 25%;
+  max-width: 25%;
+  height: 100%;
+  gap: 10%    ;
+}
+
+@media(max-width: 1200px) {
+  .navbarPokemon{
+    display: none;
+  }
+  .headerRightHamburger {
+    display: flex;
+  }
+  .headerRight{
+    display: none;
+  }
+  #trainer {
+    display: none;
+  }
+  .pseudoHeaderRight {
+    display: block;
+  }
+}
+
+
+
+.homePageDifficulty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2vw;
+  color: black;
+  text-align: center;
+  height: 10%;
+  max-height: 10%;
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 1%;
+}
+
+.homePageDifficulty > b {
+  color: red
+}
+
+.brighten {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 100%;
+  height: 60%;
+  max-height: 60%;
+  width: 100%;
+  max-width: 100%;
+}
+
+.brighten img {
+  width: 100%;
+  height: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  -webkit-filter: brightness(70%);
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  -ms-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+  .grid1:hover > .brighten>img {
+    -webkit-filter: brightness(100%);
+  }
+
+  .grid2:hover > .brighten>img {
+    -webkit-filter: brightness(100%);
+  }
+  
+  .grid3:hover > .brighten>img {
+    -webkit-filter: brightness(100%);
+  }
+
+  .homePageScoreboardDiv {
+    display: flex;
+    margin: 20px 0px;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .homePageScoreboardButtonOuter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 15%;
+  }
+
+  .homePageScoreboardButton {
+
+    background-color: #EE2A24 ;
+    color: white;
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+    border: blue;
+    font-size: 1.5vw;
+  }
+
+  .scoreboardButtonOutside {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 25px 0px;
+  }
+
+  .homePageScoreboardButton:hover {
+    background-color: #ec6661
+  }
+
+  #homePageLeaderboardTextBottom {
+    color: #EE2A24;
+  }
+
+  .homePageLeaderboardText {
+    font-weight: bold;
+    margin: 0px;
+    font-size: 2vw;
+    padding: 0;
+  }
+
+  @media(max-width: 1200px) {
+    .homePageLeaderboardText {
+      font-size: 3vw;
+    }
+    .homePageScoreboardButton {
+      font-size: 2.2vw;
+    }
+  }
+
+  @media(max-width: 800px) {
+    .homePageLeaderboardText {
+      font-size: 4vw;
+    }
+    .homePageScoreboardButton {
+      font-size: 3vw;
+    }
+    .homePageScoreboardButtonOuter {
+      width: 20%;
+    }
+  }
+
+.scoreboardGrid {
+  display: grid;
+  grid-template-columns: repeat(3, min-content);
+  grid-template-rows: repeat(1, minmax(300px, 1fr));
+  margin-top: 10px;
+  gap: 1%;
+  width: 100%;
+  max-width: inherit;
+  max-height: 50vh;
+  height: 50vh;
+  box-sizing: border-box;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  padding: 10px;
+}
+
+
+.scoreboardGrid::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color: #F5F5F5;
+}
+
+.scoreboardGrid::-webkit-scrollbar
+{
+	width: 12px;
+	background-color: #F5F5F5;
+}
+
+.scoreboardGrid::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: rgb(0, 174, 239)
+}
+
+
+.scoreboardGridItem {
+  height: 40vh;
+  width: auto;
+}
+
+.scoreboardGridItem {
+  height: 100%;
+  width: auto;
+}
+
+
+.scoreboardRendering {
+  display: flex;
+  justify-content: center;
+}
+
+.scoreboardButton {
+  background-color: #EE2A24 ;
+  color: white;
+  height: 100%;
+  border-radius: 10px;
+  border: blue;
+  font-size:x-large;
+  min-height: 100%;
+  word-break: keep-all;
+}
+
+.scoreboardButton:hover {
+  background-color: #ec6661
+}
+
+.scoreboardButtonDiv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 25px 0px;
+}
+
+.scoreboardUpperText {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2vw;
+  color: #EE2A24;
+  font-weight: bold;
+  margin: 30px 10px;
+}
+
+.grid1, .grid2, .grid3 {
+  border:5px solid #ec6661;
+  max-height: 100%;
+  height: 100%;
+  max-width: 100%;
+  width: 100%;
+  padding: 0.2vw;
+}
+
+
+.grid1:hover, .grid2:hover, .grid3:hover {
+  border:5px solid #ac4646;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.tableOutside {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 100%;
+}
+
+@media(max-width: 520px) {
+  .dateHeader {
+    display: none;
+  }
+  .date {
+    display: none;
+  }
+}
+
+table {
+
+  background: #EE2A24;
+  border-radius: 0.25em;
+  border-collapse: collapse;
+  margin: 1em;
+  min-width: 300px;
+  width: 50%;
+  max-width: 50%;
+  table-layout: fixed;
+
+}
+
+@media(max-width: 1000px) {
+  table{
+    width: 95%;
+    max-width: 100%;
+  }
+}
+
+th {
+  border-bottom: 1px solid #364043;
+  color: #ffffff;
+  font-size: 1.5em;
+  font-weight: 600;
+  padding: 0.5em 1em;
+  text-align: left;
+}
+td {
+  color: #fff;
+  font-weight: 400;
+  padding: 0.65em 1em;
+}
+.disabled td {
+  color: #4F5F64;
+}
+tbody tr {
+  transition: background 0.25s ease;
+}
+tbody tr:hover {
+  background: #c42c26;
+}
+
+
+select {
+   -webkit-appearance:none;
+   -moz-appearance:none;
+   -ms-appearance:none;
+   appearance:none;
+   outline:0;
+   box-shadow:none;
+   border:0!important;
+   background: #EE2A24;
+   background-image: none;
+   flex: 1;
+   padding: 0 .5em;
+   color:#fff;
+   cursor:pointer;
+   font-size: 1em;
+   font-family: 'Open Sans', sans-serif;
+   border-radius: 1em;
+}
+select::-ms-expand {
+   display: none;
+}
+.charSelectionMenu {
+   position: relative;
+   display: flex;
+   width: 20em;
+   height: 3em;
+   line-height: 3;
+   background: #5c6664;
+   overflow: hidden;
+   border-radius: 1em;
+}
+.charSelectionMenu::after {
+   content: '\25BC';
+   position: absolute;
+   top: 0;
+   right: 0;
+   padding: 0 1em;
+   background: #2b2e2e;
+   cursor:pointer;
+   pointer-events:none;
+   transition:.25s all ease;
+}
+.charSelectionMenu:hover::after {
+   color: #23b499;
+}
+
+.backgroundDiv:hover {
+  cursor: pointer;
+}
+
+.submitFormOuter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  background-color: #ffffffda;
+}
+
+.parentDiv {
+  width: 100%;
+}
+
+
+
+.submitFormInner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: fit-content;
+  max-width: 50%;
+  height: auto;
+  background-color: #00AEEF;
+  padding: 5%;
+  border-radius: 5%;
+}
+
+
+@media(max-width: 500px) {
+  .submitFormInner {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+.submitForm {
+  margin: 5% 0%;
+}
+
+.homePageCharacterText {
+  height: 50%;
+  max-height: 50%;
+  text-align: center;
+  font-size: 2vw;
+  margin-bottom: 2%;
+}
+
+@media(min-width: 1500px) {
+  .homePageCharacterText {
+    font-size: 1.5vw;
+  }
+}
+
+@media (max-width: 1000px) {
+  .homePageCharacterText {
+    font-size: 2.5vw;
+  }
+  .homePageDifficulty {
+    font-size: 3vw;
+  }
+  .scoreboardUpperText {
+    font-size: 3vw
+  }
+}
+
+@media (max-width: 600px) {
+  .homePageCharacterText {
+    font-size: 3vw;
+  }
+  .homePageDifficulty {
+    font-size: 3vw;
+  }
+}
+
+@media (max-width: 450px) {
+  .homePageCharacterText {
+    font-size: 3.5vw;
+  }
+  .homePageDifficulty {
+    font-size: 3.5vw;
+  }
+  .scoreboardUpperText {
+    font-size: 5vw
+  }
+}
+
+.homePageImageOuter {
+  max-height: 100%;
+  height: 100%;
+  max-width: 100%;
+  width: 100%;
+}
+
+.homepageImage {
+  display: block;
+}
+
+.AreYouAnExpertText {
+  display: flex;
+  flex-direction: column;
+}
+
+.scoreboardBody {
+  max-width: 100vw;
+}
+
+.username {
+  max-width: 50%;
+  width: 50%;
+  width: fit-content;
+  word-wrap: break-word;
+}
+
+.tableRow {
+  min-width: fit-content;
+  width: 100%;
+  max-width: 100%;
+}
+
+.tableBody {
+  width: 100%;
+  max-width: 100%;
+}
+
+.tableRow > td {
+  min-width: fit-content;
+}
+
+.pokemonAndName {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: height 0.2s ease-in-out;
+  height: 80%;
+  padding: 5px;
+  border-radius: 5%;
+}
+
+.pokemonAndName:hover {
+  height: 100%;
+}
+
+#pokemonName {
+  height: 100%;
+  font-weight: bold;
+  font-size: 1vw;
+}
+
+@media(max-width: 1000px) {
+  #pokemonName {
+    font-size: 2vw;
+  }
+}
+
+@media(max-width: 650px) {
+  #pokemonName {
+    font-size: 3vw;
+  }
+}
