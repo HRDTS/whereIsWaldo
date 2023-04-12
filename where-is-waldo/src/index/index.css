@@ -60,7 +60,8 @@ code {
   top: 0;
   display: flex;
   justify-content: space-between;
-  min-height: 100px;
+  min-height: 20px;
+  max-height: fit-content;
   background-color: red;
   z-index: 4;
 }

@@ -86,11 +86,10 @@ function Parent(props) {
     function mouseCoordinates (event) {
         //setTimer({...timer, timerStarted: true})
         let element = event.target.parentElement.className
-        //let rect = event.target.getBoundingClientRect()
 
         let rect = document.getElementsByClassName('backgroundDiv')[0].getBoundingClientRect()
         
-        let xPos = Math.round(event.x - rect.left);
+        let xPos = Math.round(event.x - rect.left); // rect.left en rect.right extracts the height of other divs. This calculation gives the coordinates for the 'backgroundDiv' class only.
         let yPos = Math.round(event.y - rect.top);
         let xPosPercentage = Math.round(((event.x - rect.left) / rect.width) * 100) // top === yPos , left === xPos (in css language)
         let yPosPercentage = Math.round(((event.y - rect.top) / rect.height)*100) 
