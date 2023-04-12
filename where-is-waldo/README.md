@@ -5,11 +5,11 @@
 
 <h2>Screenshot one: </h2> <br>
 
-![Screenshot of the website homepage](https://raw.githubusercontent.com/HRDTS/whereIsWaldo/main/where-is-waldo/waldoss1.png?token=GHSAT0AAAAAACAQB4WR3HSL7Z7WF6XD5NOKZBSA24A)
+![Screenshot of the website homepage](https://i.imgur.com/tVhU0R6.png)
 
 <h2>Screenshot two: </h2> <br>
 
-![Screenshot of a level](https://raw.githubusercontent.com/HRDTS/whereIsWaldo/main/where-is-waldo/waldoss2.png?token=GHSAT0AAAAAACAQB4WQTW6QGXGSB3PGNKJ6ZBSA3SA)
+![Screenshot of a level](https://i.imgur.com/KL3vyEy.png)
 
 <h1>Project Description:</h1><br>
 The game is simple: users can play up to three levels. Each level has its own map with a bunch of Pokemons on it. The goal is to find three Pokemons on the map. The ‘target’ Pokemons are listed in the header. If the user sees the Pokemon on the map, they can click on it and a drop down menu will be rendered. This drop down menu contains three Pokemon names. The user needs to select the correct name that matches the Pokemon. If the selected Pokemon is located correctly and the correct name is chosen, the user will get a point. Find all three Pokemons to win the game.
